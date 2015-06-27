@@ -12,7 +12,7 @@ public class HelloController {
 	public String printWelcome(ModelMap model) {
 
 
-        /*asdasdas sdfsfsf  dfhdhdh asasadadfsdfsdfsfsfsfsfsdsdd*/
+        /*asdasdas sdfsfsf  dfhdhdhefrsfsdfsf asasadadfsdfsdfsfsdfsdfsfsfsfsfsdsdd*/
 		model.addAttribute("message", "Hello world!");
 		return "hello";
 	}
