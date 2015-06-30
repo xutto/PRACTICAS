@@ -10,12 +10,14 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.spi.http.HttpHandler;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.logging.Handler;
 
 
 
 @Controller
-@RequestMapping("/vista-coche.htm")
+@RequestMapping("vista-coche.htm")
 public class CocheController {
 
 
@@ -23,14 +25,23 @@ public class CocheController {
     @RequestMapping
     public ModelAndView Request(HttpServletRequest hsr, HttpServletResponse hsr1){
     ModelAndView mv = new ModelAndView("vista-coche");
-        Coche coche = new CocheService().CreaCoche();
+        ArrayList coches = new ArrayList();
+
+        Coche coche1 = new CocheService().CreaCoche();
+        Coche coche2 = new CocheService().CreaCoche();
+        Coche coche3 = new CocheService().CreaCoche();
+
+
+        coches.add(coche1);
+        coches.add(coche2);
+        coches.add(coche3);
 
         //LLAMAR A UN COCHE
 
-        System.out.println(coche.toString());
+        System.out.println(coches.toString());
         System.out.println("sdfmsdfkls");
 
-    mv.addObject("coche",coche);
+    mv.addObject("coches",coches);
     return mv;
     }
 }

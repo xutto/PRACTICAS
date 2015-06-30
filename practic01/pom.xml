@@ -24,7 +24,12 @@
             <version>1</version>
         </dependency>
 
-
+        <!-- JSTL LIBRARY-->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -63,6 +68,15 @@
             <artifactId>autowire_sjs0.6.0-M3_2.10</artifactId>
             <version>0.2.8-M3</version>
         </dependency>
+
+        <!--CGLIB-->
+
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.1</version>
+        </dependency>
+
 
 
         <dependency>
