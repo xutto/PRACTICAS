@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-<html ng-app=""> <%--iniciando aplicacion--%>
+<html ng-app="presentaCoches"> <%--iniciando aplicacion--%>
 
 <head>
     <title></title>
@@ -14,18 +14,19 @@
 </head>
 <body>
 
-
-
-<div ng-show="{{'${show}'}}" class="tag1">{{ titulo }}</div>
-
-<div><p>{{ 20 + 30 + "${hola}"}}</p></div>
-<br/>
-
-<p>filtro euros {{ 50 | currency:" € "}} importada de {{ 'INdia' | uppercase}}</p>
-
 <hr/>
+<div ng-controller="controlTitulo">
+    <div ng-show="{{'${show}'}}" class="tag1">{{ titulo | uppercase}}</div>
+    <br/>
 
+<!-- EL FORMULARIO ENVIA EL PARAMETRO "titulon" QUE CONTIENE EL VALOR DEL TITULO HACIA EL CONTROLADOR SPRING-->
 <form method="post" action="angular.htm">
+    <label>Esto es lo del titulo</label><br/>
+
+    <!-- EL TITULO DEPENDE DE LO QUE PONGAS EN EL INPUT, CUANDO DAS A SUBMIT CAMBIAS EL VALOR POR DEFECTO .....
+    PEEEEEERO A TRAVES DEL CONTROLADOR DE SPRING-->
+    <input type="text" name="titulon" ng-model="titulo"/><br/><br/>
+
     <select name="aparece">
         <option value="true">true</option>
         <option value="false">false</option>
@@ -33,12 +34,51 @@
 
     <input type="submit" value="apreta">
 </form>
-
+</div>
 <hr/>
 
-<input type="text" ng-model="titulo"/> <br/>
+
+<div><p>{{ "Esto es una operacion 20 + 30 concatenado con variable de spring ${'${hola}'} --- " + (20 + 30) + " "+"${hola}"}}</p></div>
+<br/>
+
+<p>filtro euros {{ 50 | currency:" € "}} importada de {{ 'INdia' | uppercase}}</p>
 
 
+<hr/>
+<br/>
+
+
+<div ng-controller="controlador1"> <%--AQUI SE EJECUTA EL CONTROLADOR1 DEFINIDO EN LA SCRIPT DE MAS ABAJO--%>
+    <h2>frutas</h2>
+    <label>Esto es el controlador1</label>
+    <input type="text" ng-model="cantidad"/> <br/>
+
+<!--EJEMPLO DE CALCULO EN TIEMPO REAL CON DATOS DEL CONTROLLER DE ANGULAR-->
+    Esto es el precio: {{ cantidad * precio }}
+
+</div>
+
+<hr/>
+<br/>
+<script>
+    var miApp = angular.module('presentaCoches', [])
+    /*crear aplicacion*/
+
+    miApp.controller('controlador1', ['$scope', function ($scope) {  /* EL CODIGO DEL CONTROLADOR*/
+        /*instanciar un controlador*/
+
+
+        $scope.cantidad = 1
+        $scope.precio = 2.5
+
+    }])
+
+
+    miApp.controller('controlTitulo', ['$scope', function ($scope) {
+        /*AQUI PODEMOS VER COMO SE RECIBE EL PARAMETRO DESDE EL CONTROLADOR*/
+        $scope.titulo = "${titulo}";
+    }])
+</script>
 </body>
 
 </html>
