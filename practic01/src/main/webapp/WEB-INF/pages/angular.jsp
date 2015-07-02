@@ -19,21 +19,21 @@
     <div ng-show="{{'${show}'}}" class="tag1">{{ titulo | uppercase}}</div>
     <br/>
 
-<!-- EL FORMULARIO ENVIA EL PARAMETRO "titulon" QUE CONTIENE EL VALOR DEL TITULO HACIA EL CONTROLADOR SPRING-->
-<form method="post" action="angular.htm">
-    <label>Esto es lo del titulo</label><br/>
+    <!-- EL FORMULARIO ENVIA EL PARAMETRO "titulon" QUE CONTIENE EL VALOR DEL TITULO HACIA EL CONTROLADOR SPRING-->
+    <form method="post" action="angular.htm">
+        <label>Esto es lo del titulo</label><br/>
 
-    <!-- EL TITULO DEPENDE DE LO QUE PONGAS EN EL INPUT, CUANDO DAS A SUBMIT CAMBIAS EL VALOR POR DEFECTO .....
-    PEEEEEERO A TRAVES DEL CONTROLADOR DE SPRING-->
-    <input type="text" name="titulon" ng-model="titulo"/><br/><br/>
+        <!-- EL TITULO DEPENDE DE LO QUE PONGAS EN EL INPUT, CUANDO DAS A SUBMIT CAMBIAS EL VALOR POR DEFECTO .....
+        PEEEEEERO A TRAVES DEL CONTROLADOR DE SPRING-->
+        <input type="text" name="titulon" ng-model="titulo"/><br/><br/>
 
-    <select name="aparece">
-        <option value="true">true</option>
-        <option value="false">false</option>
-    </select>
+        <select name="aparece">
+            <option value="true">true</option>
+            <option value="false">false</option>
+        </select>
 
-    <input type="submit" value="apreta">
-</form>
+        <input type="submit" value="apreta">
+    </form>
 </div>
 <hr/>
 
@@ -53,13 +53,32 @@
     <label>Esto es el controlador1</label>
     <input type="text" ng-model="cantidad"/> <br/>
 
-<!--EJEMPLO DE CALCULO EN TIEMPO REAL CON DATOS DEL CONTROLLER DE ANGULAR-->
+    <!--EJEMPLO DE CALCULO EN TIEMPO REAL CON DATOS DEL CONTROLLER DE ANGULAR-->
     Esto es el precio: {{ cantidad * precio }}
 
 </div>
-
+<br/>
 <hr/>
 <br/>
+
+<div ng-controller="controlador3">
+    <h2>coches</h2>
+
+    <ul>
+        <li ng-repeat=" nombre in nombres">
+            {{ nombre }}
+        </li>
+    </ul>
+        <input type="search" ng-model="buscar"/> <!-- TODO AQUI ESTA EL FILTRO, SE NOMBRA EN EL NG-MODEL -->
+    <ul>
+        <li ng-repeat=" coche in coches | filter:buscar "> <!-- TODO AQUI SE LLAMA AL JSON QUE HEMOS TRAIDO DEL CONTROLADOR SPRING ojo al filtro de BUSQUEDA -->
+            {{coche.marca}} {{coche.modelo}} {{coche.color}}
+        </li>
+    </ul>
+
+</div>
+
+
 <script>
     var miApp = angular.module('presentaCoches', [])
     /*crear aplicacion*/
@@ -75,8 +94,12 @@
 
 
     miApp.controller('controlTitulo', ['$scope', function ($scope) {
-        /*AQUI PODEMOS VER COMO SE RECIBE EL PARAMETRO DESDE EL CONTROLADOR*/
+        /*AQUI PODEMOS VER COMO SE RECIBE EL PARAMETRO DESDE EL CONTROLADOR DE SPRING*/
         $scope.titulo = "${titulo}";
+    }])
+    miApp.controller('controlador3', ['$scope', function ($scope) {
+        $scope.nombres = ["polloman", "gracia", "alfredaco"]
+        $scope.coches= ${coches} /* TODO nos estamos tryendo un JSON */
     }])
 </script>
 </body>

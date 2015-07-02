@@ -64,7 +64,7 @@ public class angularController {
 
 
         mv.addObject("titulo", titulo);
-        mv.addObject(jCoches);
+        mv.addObject("coches",jCoches);
         mv.addObject("hola", hola);
         mv.addObject("show", show);
         return mv;
