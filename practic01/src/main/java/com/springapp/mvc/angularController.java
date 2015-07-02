@@ -15,10 +15,27 @@ public class angularController {
 
     @RequestMapping
     public ModelAndView Request(HttpServletRequest hsr, HttpServletResponse hsr1){
+        String tri = "";
+        String hola = "hole";
+        Boolean show = true;
+        if (hsr.getParameter("aparece") != null){
+            tri = hsr.getParameter("aparece");
+
+            if (tri.equals("true")){
+                show = true;
+            }
+            if (tri.equals("false")){
+                show = false;
+            }
+        }
+
         ModelAndView mv = new ModelAndView("angular");
 
 
 
+
+        mv.addObject("hola",hola);
+        mv.addObject("show",show);
         return mv;
 
     }

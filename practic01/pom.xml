@@ -69,6 +69,14 @@
             <version>0.2.8-M3</version>
         </dependency>
 
+        <!--ANGULAR-JS-->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>angularjs</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+
+
         <!--CGLIB-->
 
         <dependency>
