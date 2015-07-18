@@ -7,6 +7,9 @@
     <title></title>
 </head>
 <body>
-bnghmgmjymhjhm
+<h2>Consumo de webservice meteorologico</h2>
+
+<p>la fecha: <c:out value="${datows}" /></p>
+
 </body>
 </html>
